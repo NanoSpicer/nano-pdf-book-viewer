@@ -2,6 +2,9 @@
 
 A small PDF viewer in shape of a book for Angular Angular 13^
 
+<div align="center">
+  <img src="./sample.gif">
+</div>
 
 ## Set up
 

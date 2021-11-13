@@ -61,8 +61,8 @@
               "projects/nano-pdfbookviewer-sample/src/styles.css"
             ],
             "scripts": [
-              "dist/nano-pdf-book-viewer/scripts/pdf.2-11-338.worker.min.js",
-              "dist/nano-pdf-book-viewer/scripts/pdf.2-11-338.min.js"
+              "node_modules/nano-pdf-book-viewer/scripts/pdf.2-11-338.worker.min.js",
+              "node_modules/nano-pdf-book-viewer/scripts/pdf.2-11-338.min.js"
             ]
           },
           "configurations": {

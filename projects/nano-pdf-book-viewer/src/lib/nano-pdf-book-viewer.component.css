@@ -1,0 +1,6 @@
+
+.page {
+    cursor: grab;
+    box-sizing: border-box;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+}

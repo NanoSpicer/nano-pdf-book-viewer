@@ -1,0 +1,8 @@
+<div #book></div>
+
+<!-- Hidden canvases to prerender the pdfs and have the pages ready-->
+<div style="display: none;">
+    <div *ngFor="let canvas of pdfPages; let i = index" class="page" data-density="hard">
+        <canvas id="canvas-{{i}}"></canvas>
+    </div>
+</div>

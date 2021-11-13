@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NanoPdfBookViewerComponent } from './nano-pdf-book-viewer.component';
 
@@ -8,6 +9,7 @@ import { NanoPdfBookViewerComponent } from './nano-pdf-book-viewer.component';
     NanoPdfBookViewerComponent
   ],
   imports: [
+    CommonModule
   ],
   exports: [
     NanoPdfBookViewerComponent

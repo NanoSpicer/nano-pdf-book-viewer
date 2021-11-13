@@ -11,6 +11,12 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    "paths": {
+      "nano-pdf-book-viewer": [
+        "dist/nano-pdf-book-viewer/nano-pdf-book-viewer",
+        "dist/nano-pdf-book-viewer"
+      ]
+    },
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,

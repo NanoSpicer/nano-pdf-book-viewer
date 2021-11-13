@@ -3,5 +3,37 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "nano-pdf-book-viewer": {
+      "projectType": "library",
+      "root": "projects/nano-pdf-book-viewer",
+      "sourceRoot": "projects/nano-pdf-book-viewer/src",
+      "prefix": "nano",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/nano-pdf-book-viewer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/nano-pdf-book-viewer/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/nano-pdf-book-viewer/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/nano-pdf-book-viewer/src/test.ts",
+            "tsConfig": "projects/nano-pdf-book-viewer/tsconfig.spec.json",
+            "karmaConfig": "projects/nano-pdf-book-viewer/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "nano-pdf-book-viewer"
 }

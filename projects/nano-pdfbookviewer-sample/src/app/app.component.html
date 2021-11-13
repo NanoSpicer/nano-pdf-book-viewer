@@ -1,5 +1,7 @@
 <h1>Hello world PDF Viewer - {{label}}</h1>
-<nano-pdf-book-viewer 
-  (loading)="onPdfLoadingState($event)" 
-  [pdfSrc]="pdfSource">
-</nano-pdf-book-viewer>
+<div style="width: 60%; height: 100%;">
+  <nano-pdf-book-viewer
+    (loading)="onPdfLoadingState($event)"
+    [pdfSrc]="pdfSource">
+  </nano-pdf-book-viewer>
+</div>

@@ -1,7 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { BehaviorSubject, Subject, combineLatest, filter, distinctUntilChanged, takeUntil } from 'rxjs';
-
-declare var PageFlip: any;
+import { PageFlip, SizeType } from 'page-flip'
 
 // Required to initialize PDF JS
 declare var pdfjsLib: any;
@@ -20,7 +19,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
   pdfPages: Array<any> = []
   private pdf: any | null = null
 
-  private pageFlip!: any // PageFlip
+  private pageFlip!: PageFlip
   private viewHasInitialized = new BehaviorSubject(false)
   private pdfDidLoadAndRender$ = new BehaviorSubject(false)
   private viewHasBeenDestroyed = new Subject<boolean>()
@@ -49,7 +48,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
   ngAfterViewChecked() {
     const pdf = this.pdf
     if(!pdf) return
-    if(this.hasInitializedCanvases) return 
+    if(this.hasInitializedCanvases) return
     this.hasInitializedCanvases = true
     this.initializeCanvases(pdf)
   }
@@ -74,8 +73,8 @@ export class NanoPdfBookViewerComponent implements OnInit {
     this.pageFlip = new PageFlip(element, {
       width: 680, // irrelevant because size is set to stretch
       height: 880,// irrelevant because size is set to stretch
-      size: 'stretch', //as SizeType,
-      // we could provide bindings to the underlying library, 
+      size: 'stretch' as SizeType,
+      // we could provide bindings to the underlying library,
       // but that's just not happenning
       showCover: true,
       drawShadow: true,

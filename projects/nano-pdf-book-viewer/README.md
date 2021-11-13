@@ -1,24 +1,44 @@
 # NanoPdfBookViewer
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+A small PDF viewer in shape of a book for Angular Angular 13^
 
-## Code scaffolding
+<div align="center">
+  <img src="./sample.gif">
+</div>
 
-Run `ng generate component component-name --project nano-pdf-book-viewer` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project nano-pdf-book-viewer`.
-> Note: Don't forget to add `--project nano-pdf-book-viewer` or else it will be added to the default project in your `angular.json` file. 
+## Set up
 
-## Build
+1. Install the dependency
+```bash
+npm install --save nano-pdf-book-viewer
+```
 
-Run `ng build nano-pdf-book-viewer` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Add PDF JS scripts to your project so we can load the pdfs
+```json
+"scripts": [
+  "node_modules/nano-pdf-book-viewer/scripts/pdf.2-11-338.worker.min.js",
+  "node_modules/nano-pdf-book-viewer/scripts/pdf.2-11-338.min.js"
+]
+```
 
-## Publishing
+3. Import the module in your `AppModule`
 
-After building your library with `ng build nano-pdf-book-viewer`, go to the dist folder `cd dist/nano-pdf-book-viewer` and run `npm publish`.
+```typescript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NanoPdfBookViewerModule } from 'nano-pdf-book-viewer';
+import { AppComponent } from './app.component';
 
-## Running unit tests
-
-Run `ng test nano-pdf-book-viewer` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NanoPdfBookViewerModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```

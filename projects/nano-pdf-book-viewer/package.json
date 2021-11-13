@@ -1,6 +1,11 @@
 {
   "name": "nano-pdf-book-viewer",
   "version": "0.0.1",
+  "author": {
+    "email": "miquelrc95@outlook.es",
+    "name": "Miquel Àngel Román",
+    "url": "https://github.com/NanoSpicer"
+  },
   "peerDependencies": {
     "@angular/common": "^13.0.0",
     "@angular/core": "^13.0.0",

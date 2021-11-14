@@ -11,6 +11,7 @@
     "start-server": "node server.js",
     "lib:bump-version": "cd projects/nano-pdf-book-viewer && npm version patch",
     "lib:build": "ng build nano-pdf-book-viewer",
+    "lib:build:watch": "ng build nano-pdf-book-viewer --watch",
     "lib:publish": "npm run lib:bump-version && npm run lib:build && cd dist/nano-pdf-book-viewer && npm publish"
   },
   "private": true,

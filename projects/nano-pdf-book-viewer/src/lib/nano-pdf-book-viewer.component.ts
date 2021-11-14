@@ -15,6 +15,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
   @ViewChild('book') bookElRef!: ElementRef<HTMLElement>
   @Input() pdfSrc!: string
   @Output() loading = new EventEmitter<boolean>()
+  @Output() pdfPageCount = new EventEmitter<number>()
 
 
   get pageNumber() : number {
@@ -96,8 +97,10 @@ export class NanoPdfBookViewerComponent implements OnInit {
       maxShadowOpacity: 0.25
     })
 
-    this.pageFlip.loadFromHTML(document.querySelectorAll('.page'))
+    const htmlElements = Array.from(document.querySelectorAll<HTMLElement>('.page'))
+    this.pageFlip.loadFromHTML(htmlElements)
     this.loading.emit(false)
+    this.pdfPageCount.emit(htmlElements.length)
   }
 
   private async initializeCanvases(pdf: any) {

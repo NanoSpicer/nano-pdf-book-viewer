@@ -16,8 +16,23 @@ export class NanoPdfBookViewerComponent implements OnInit {
   @Input() pdfSrc!: string
   @Output() loading = new EventEmitter<boolean>()
 
+
+  get pageNumber() : number {
+    return this._pageNumber;
+  }
+  @Input()
+  set pageNumber(v : number) {
+    if(v >= this.pdfPages.length) return
+    if(v < 0) return
+    if(this.pageNumber === v) return
+    this.pageFlip?.flip(v)
+    this._pageNumber = v;
+  }
+
+
   pdfPages: Array<any> = []
   private pdf: any | null = null
+  private _pageNumber = 0
 
   private pageFlip!: PageFlip
   private viewHasInitialized = new BehaviorSubject(false)

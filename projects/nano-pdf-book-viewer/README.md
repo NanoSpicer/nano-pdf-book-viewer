@@ -42,3 +42,10 @@ import { AppComponent } from './app.component';
 })
 export class AppModule { }
 ```
+
+## NanoPdfBookViewerComponent properties
+
+* `[pdfSrc]` set this property to point to the PDF you'd like to load. At this moment the property doesn't re-download the PDF in case the pdfSrc property changes.
+* `[pageNumber]` allows the developer to set the current page. It always performs the animation.
+* `(loading)` emits `true` and `false` based on the state of the component; Downloading PDF, Rendering, etc. Once it's done rendering emits `true`.
+* `(pdfPageCount)` emits the total number of pages once the PDF has been downloaded and parsed.

@@ -25,11 +25,13 @@
   "peerDependencies": {
     "@angular/common": "^13.0.0",
     "@angular/core": "^13.0.0",
-    "page-flip": "^2.0.7",
-    "@types/page-flip": "^2.0.0",
     "rxjs": "~7.4.0"
   },
   "dependencies": {
+    "page-flip": "^2.0.7",
     "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/page-flip": "^2.0.0"
   }
 }

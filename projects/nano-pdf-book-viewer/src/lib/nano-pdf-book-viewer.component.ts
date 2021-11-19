@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { BehaviorSubject, Subject, combineLatest, filter, distinctUntilChanged, takeUntil, tap, map, delay } from 'rxjs';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { BehaviorSubject, Subject, combineLatest, filter, distinctUntilChanged, takeUntil, map, delay } from 'rxjs';
 import { PageFlip, SizeType } from 'page-flip'
 
 // Required to initialize PDF JS
@@ -28,7 +28,12 @@ export class NanoPdfBookViewerComponent implements OnInit {
     this._pdfSrc = v;
     this.loadPdf()
   }
-
+  @Input() set defaultStartPage(v: number) {
+    this._defaultStartPage = v;
+  }
+  get defaultStartPage(): number {
+    return this._defaultStartPage;
+  }
   get pageNumber(): number {
     return this._pageNumber;
   }
@@ -46,6 +51,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
   private _pdfSrc = ''
   private pdf: any | null = null
   private _pageNumber = 0
+  private _defaultStartPage = 0
 
   private pageFlip: PageFlip | null = null
   private viewHasInitialized = new BehaviorSubject(false)
@@ -86,12 +92,19 @@ export class NanoPdfBookViewerComponent implements OnInit {
     this.pageFlip = new PageFlip(element, {
       width: 680, // irrelevant because size is set to stretch
       height: 880,// irrelevant because size is set to stretch
+      // set threshold values - important values because they help the orientation trigger
+      minWidth: 315,
+      maxWidth: 1000,
+      minHeight: 420,
+      maxHeight: 1350,
       size: 'stretch' as SizeType,
       // we could provide bindings to the underlying library,
       // but that's just not happenning
       showCover: true,
       drawShadow: true,
-      maxShadowOpacity: 0.25
+      maxShadowOpacity: 0.25,
+      startPage: this.defaultStartPage
+
     })
     this.viewHasInitialized.next(true)
   }
@@ -127,7 +140,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
     // Clear any left-over children that the page flip might've left behnid
     this.bookElRef?.nativeElement?.replaceChildren()
     this.pdfPages = []
-    this._pageNumber = 0
+    this._pageNumber = this.defaultStartPage
     this.pdfDidLoadAndRender$.next(false)
     this.hasInitializedCanvases = false
   }

@@ -45,6 +45,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
     this.pageFlip?.flip(v)
     this._pageNumber = v;
   }
+  @Output() pageNumberChange = new EventEmitter<number>()
 
 
   pdfPages: Array<any> = []
@@ -107,6 +108,11 @@ export class NanoPdfBookViewerComponent implements OnInit {
 
     })
     this.viewHasInitialized.next(true)
+    this.pageFlip.on('flip', (e) => {
+      this._pageNumber = e.data as number;
+      this.pageNumberChange.emit(this._pageNumber)
+      }
+    );
   }
 
   ngAfterViewChecked() {
@@ -162,6 +168,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
     this.pageFlip.loadFromHTML(htmlElements)
     this.loading.emit(false)
     this.pdfPageCount.emit(htmlElements.length)
+    this.pageNumberChange.emit(this.pageNumber)
   }
 
   private async initializeCanvases(pdf: any) {

@@ -5,6 +5,7 @@ import { PageFlip, SizeType } from 'page-flip'
 // Required to initialize PDF JS
 declare var pdfjsLib: any;
 declare var pdfjsWorker: any;
+export type PdfSizeType = 'fixed' | 'stretch'
 
 @Component({
   selector: 'nano-pdf-book-viewer',
@@ -44,11 +45,11 @@ export class NanoPdfBookViewerComponent implements OnInit {
     this._showCover = v;
   }
 
-  get sizeType(): SizeType {
-    return this._sizeType as SizeType;
+  get sizeType(): PdfSizeType {
+    return this._sizeType;
   }
-  @Input() set sizeType(v: string){
-    this._sizeType = v as SizeType;
+  @Input() set sizeType(v: PdfSizeType){
+    this._sizeType = v;
   }
 
   get width(): number {
@@ -110,7 +111,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
   private _pageNumber = 0
   private _defaultStartPage = 0
   private _showCover = false;
-  private _sizeType: string = 'stretch';
+  private _sizeType: PdfSizeType = 'stretch';
   private _width = 600;
   private _maxWidth = 600;
   private _minWidth = 300;
@@ -162,7 +163,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
       minHeight: this.minHeight,
       maxHeight: this.maxHeight,
 
-      size: this.sizeType,
+      size: this.sizeType as SizeType,
       // we could provide bindings to the underlying library,
       // but that's just not happenning
       showCover: this.showCover,

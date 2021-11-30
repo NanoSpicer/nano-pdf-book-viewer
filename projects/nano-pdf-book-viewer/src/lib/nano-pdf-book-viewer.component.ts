@@ -44,8 +44,8 @@ export class NanoPdfBookViewerComponent implements OnInit {
     this._showCover = v;
   }
 
-  get sizeType(): SizeType {
-    return this._sizeType as SizeType;
+  get sizeType(): string {
+    return this._sizeType;
   }
   @Input() set sizeType(v: string){
     this._sizeType = v as SizeType;
@@ -162,7 +162,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
       minHeight: this.minHeight,
       maxHeight: this.maxHeight,
 
-      size: this.sizeType,
+      size: this.sizeType as SizeType,
       // we could provide bindings to the underlying library,
       // but that's just not happenning
       showCover: this.showCover,

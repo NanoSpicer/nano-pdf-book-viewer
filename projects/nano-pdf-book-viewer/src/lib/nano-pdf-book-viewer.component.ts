@@ -65,6 +65,33 @@ export class NanoPdfBookViewerComponent implements OnInit {
     this._height = v;
   }
 
+  get maxWidth(): number {
+    return this._maxWidth;
+  }
+  @Input() set maxWidth(v: number){
+    this._maxWidth = v;
+  }
+
+  get maxHeight(): number {
+    return this._maxHeight;
+  }
+  @Input() set maxHeight(v: number){
+    this._maxHeight = v;
+  }
+
+  get minWidth(): number {
+    return this._minWidth;
+  }
+  @Input() set minWidth(v: number){
+    this._minWidth = v;
+  }
+
+  get minHeight(): number {
+    return this._minHeight;
+  }
+  @Input() set minHeight(v: number){
+    this._minHeight = v;
+  }
 
   @Input()
   set pageNumber(v: number) {
@@ -85,7 +112,11 @@ export class NanoPdfBookViewerComponent implements OnInit {
   private _showCover = false;
   private _sizeType: string = 'stretch';
   private _width = 600;
-  private _height = 800;
+  private _maxWidth = 600;
+  private _minWidth = 300;
+  private _height = 600;
+  private _maxHeight = 600;
+  private _minHeight = 300;
   private pageFlip: PageFlip | null = null
   private viewHasInitialized = new BehaviorSubject(false)
   private pdfDidLoadAndRender$ = new BehaviorSubject(false)
@@ -126,10 +157,10 @@ export class NanoPdfBookViewerComponent implements OnInit {
       width: this.width, // irrelevant because size is set to stretch
       height: this.height,// irrelevant because size is set to stretch
       // set threshold values - important values because they help the orientation trigger
-      minWidth: 315,
-      maxWidth: 1000,
-      minHeight: 420,
-      maxHeight: 1350,
+      minWidth: this.minWidth,
+      maxWidth: this.maxWidth,
+      minHeight: this.minHeight,
+      maxHeight: this.maxHeight,
 
       size: this.sizeType,
       // we could provide bindings to the underlying library,

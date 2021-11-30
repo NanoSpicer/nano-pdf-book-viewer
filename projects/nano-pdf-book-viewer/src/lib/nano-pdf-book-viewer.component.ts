@@ -37,6 +37,12 @@ export class NanoPdfBookViewerComponent implements OnInit {
   get pageNumber(): number {
     return this._pageNumber;
   }
+  get showCover(): boolean {
+    return this._showCover;
+  }
+  @Input() set showCover(v: boolean){
+    this._showCover = v;
+  }
   @Input()
   set pageNumber(v: number) {
     if (v >= this.pdfPages.length) return
@@ -53,7 +59,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
   private pdf: any | null = null
   private _pageNumber = 0
   private _defaultStartPage = 0
-
+  private _showCover = false;
   private pageFlip: PageFlip | null = null
   private viewHasInitialized = new BehaviorSubject(false)
   private pdfDidLoadAndRender$ = new BehaviorSubject(false)
@@ -101,7 +107,7 @@ export class NanoPdfBookViewerComponent implements OnInit {
       size: 'stretch' as SizeType,
       // we could provide bindings to the underlying library,
       // but that's just not happenning
-      showCover: true,
+      showCover: this.showCover,
       drawShadow: true,
       maxShadowOpacity: 0.25,
       startPage: this.defaultStartPage
